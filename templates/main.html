@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+   <head>
+      <title>{{title}}</title>
+      <style type="text/css">
+        /* Just for demo */
+        a {
+                display: block;
+                width: 360px;
+                margin: 0.5em;
+                padding: 12px;
+                background: #f5f5f5;
+                font-size: 24px;
+        }
+        #mention {
+                display: inline;
+                background: #ffffff;
+                font-size: 12px;
+                font-style: italic;
+        }
+        </style>
+   </head>
+
+   <body>
+      <h1>{{title}} </h1>
+      <h2>Temperature de l'eau ({{date}}) : {{ tempEau }}</h2>
+      <img src="/static/tempiscine.png">
+      <br><hr><br>
+      <h2> La filtration est actuellement
+         {% if etatPompe ==  gpioMarche %}
+            en marche
+         {% else %}
+            arrêtée
+         {% endif %}
+      </h2>
+         {% if etatPompe ==  gpioMarche %}
+            <a href="{{ url_for('pompe_arret') }}">Arrêter</a>
+         {% else %}
+            <a href="{{ url_for('pompe_marche') }}">Allumer</a>
+         {% endif %}
+      <br><hr><br>
+      <h2> Le contrôle pH est actuellement
+         {% if etatControlepH ==  gpioMarche %}
+            en marche
+         {% else %}
+            arrêté
+         {% endif %}
+      </h2>
+         {% if etatControlepH ==  gpioMarche %}
+            <a href="{{ url_for('controleph_arret') }}">Arrêter</a>
+         {% else %}
+            <a href="{{ url_for('controleph_marche') }}">Allumer</a>
+         {% endif %}
+      <br><hr><br>
+         {% if activation ==  gpioMarche %}
+             <p id="mention"> Pisciweb {{ pisciWebVersion}} système désactivé </p>
+         {% else %}
+             <p id="mention"> Pisciweb {{ pisciWebVersion}} système sous contrôle</p>
+         {% endif %}
+         <a id="mention" href="{{ url_for('debogage') }}"> passer en manuel pour deboguer</a>
+
+   </body>
+</html>

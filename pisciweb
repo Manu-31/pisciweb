@@ -1,0 +1,32 @@
+#! /bin/sh
+# /etc/init.d/pisciweb
+#
+# Installer via update-rc.d pisciweb defaults
+
+SRV_PATH=/home/pi/pisciweb/pisciweb.py
+PYTHON=/usr/bin/python
+
+# Some things that run always
+touch /var/lock/pisciweb
+PIDFILE=/var/run/pisciweb.pid
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting script pisciweb "
+    #start-stop-daemon --background --make-pidfile --pidfile $PIDFILE --start --exec $PYTHON $SRV_PATH
+    start-stop-daemon --background --start --exec $PYTHON $SRV_PATH
+    ;;
+  stop)
+    echo "Stopping script pisciweb"
+    #start-stop-daemon --pidfile $PIDFILE --stop $PYTHON $SRV_PATH
+    start-stop-daemon --stop --exec $PYTHON $SRV_PATH
+    ;;
+  *)
+    echo "Usage: /etc/init.d/pisciweb {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
+

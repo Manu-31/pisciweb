@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+   <title>Current Status</title>
+</head>
+
+<body>
+   <h1>Device Listing and Status</h1>
+
+   {% for pin in gpioPins %}
+   <p>La broche "{{ gpioPins[pin].nom }}"
+   {% if gpioPins[pin].state == true %}
+      is currently high (<a href="/{{pin}}/low">turn low</a>)
+   {% else %}
+      is currently low (<a href="/{{pin}}/high">turn high</a>)
+   {% endif %}
+   </p>
+   {% endfor %}
+
+   {% if message %}
+   <h2>{{ message }}</h2>
+   {% endif %}
+
+      <br><hr><br>
+           <a href="{{ url_for('hello') }}"> passer en mode normal</a>
+
+</body>
+</html>
+
