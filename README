@@ -1,2 +1,46 @@
-  Un début d'outil pour "gérer" ma piscine
+  Un début d'outil pour "gérer" ma piscine.
 
+1 - Principes généraux
+
+   Il s'agit essentiellement d'un serveur web permettant d'observer
+(voire de modifier) l'état de la piscine et de quelques scripts
+permettant de mettre en place une gestion de base.
+
+2 - L'installation des fichiers
+
+   2.1 - pisciweb 
+
+   Ce scrip doit être copié dans /etc/init.d/ (puis lié dans les
+/etc/rc?.d/ voulus) pour lancer le service au démarrage 
+
+   2.2 - La crontab doit être modifiée de la façon suivante
+
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+*   *    *    *    *     /usr/bin/sudo  /usr/bin/python /home/pi/pisciweb/pisciweb.py --echantillonner
+0-59/15  *    *    *    *     /home/pi/pisciweb/templog.sh graph
+1   0    *    *    *     /home/pi/pisciweb/templog.sh archive
+2   9    *    *    *     /usr/bin/sudo  /usr/bin/python /home/pi/pisciweb/pisciweb.py --filtration_start
+2  19    *    *    *     /usr/bin/sudo  /usr/bin/python /home/pi/pisciweb/pisciweb.py --filtration_stop
+
+   La première ligne déclanche un échantillonage régulier, la deuxième
+un tracé tous les quarts d'heure. La troisième archive chaque jour
+le fichier de log. Enfin, chacune des 2 dernières allume et éteint la
+filtration.
+
+   2.3 - pisciweb.py
+
+   Ce script permet de mettre en place le seveur web. Il est aussi
+appelé à remplacer le script templog.sh
+
+   2.4 - templog.sh
+
+   C'est ma première version de l'outil (uniquement en ligne de
+commande). Avec l'introduction de pisciweb.py pour avoir une interface
+web, il est appelé à disparaitre.
+
+3 - Le branchement
+
+   L'idée de base est que le système traditionnel (manuel) continue
+autant que possible d'être fonctionnel si le système informatique
+déconne. 

@@ -54,9 +54,9 @@
 </table>
       <br>
         {% if activation ==  gpioMarche %}
-             <p id="mention"> Pisciweb {{ pisciWebVersion}} système désactivé </p>
-         {% else %}
              <p id="mention"> Pisciweb {{ pisciWebVersion}} système sous contrôle</p>
+         {% else %}
+             <p id="mention"> Pisciweb {{ pisciWebVersion}} système désactivé </p>
          {% endif %}
          <a id="mention" href="{{ url_for('debogage') }}"> débogage</a>
 </body>
