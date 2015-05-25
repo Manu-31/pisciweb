@@ -105,7 +105,7 @@ gpioPins = {
 def echantillonner():
    t_e = str(temperature_eau())
    t_l = str(temperature_local())
-   ps = str(1-gpio.input(pinPompe)) # Le "1-" est là car actif=low
+   ps = str(1-gpio.input(pinPompe)) # Le "1-" est la car actif=low
    N = str(int(time.time())) 
    #print rrd_file + " : " + N+":"+t_e+":"+t_l+":"+ps
    #log("Echantillonnage dans " +  rrd_file + " : " + N+":"+t_e+":"+t_l+":"+ps)
@@ -351,5 +351,5 @@ if __name__ == "__main__":
       gpio.output(pin, gpioPins[pin]['etat'])
 
    print "Temperature eau " + str(temperature_eau()) + "\n"
-   app.run(host='0.0.0.0', port=8081, debug=True)
+   app.run(host='0.0.0.0', port=8081, debug=False)
 
