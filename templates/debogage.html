@@ -4,14 +4,14 @@
 </head>
 
 <body>
-   <h1>Device Listing and Status</h1>
+   <h1>État des broches (low = actif)</h1>
 
    {% for pin in gpioPins %}
    <p>La broche "{{ gpioPins[pin].nom }}"
    {% if gpioPins[pin].state == true %}
-      is currently high (<a href="/{{pin}}/low">turn low</a>)
+      est actuellement high (<a href="/{{pin}}/low">turn low</a>)
    {% else %}
-      is currently low (<a href="/{{pin}}/high">turn high</a>)
+      est actuellement low (<a href="/{{pin}}/high">turn high</a>)
    {% endif %}
    </p>
    {% endfor %}

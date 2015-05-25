@@ -75,7 +75,7 @@ gpioArret = gpio.HIGH
 gpioPins = {
    pinActive : {
       'nom'  : 'Activation Pompe',
-      'etat' : gpioArret
+      'etat' : gpioMarche
    },   
    pinPompe : {
       'nom'  : 'Filtration',
@@ -87,7 +87,7 @@ gpioPins = {
    },
    pinActiveRobot : {
       'nom'  : 'Activation Robot',
-      'etat' : gpioArret
+      'etat' : gpioMarche
    },   
    pinRobot : {
       'nom'  : 'Robot',
@@ -105,7 +105,7 @@ gpioPins = {
 def echantillonner():
    t_e = str(temperature_eau())
    t_l = str(temperature_local())
-   ps = str(gpio.input(pinPompe))
+   ps = str(1-gpio.input(pinPompe)) # Le "1-" est là car actif=low
    N = str(int(time.time())) 
    #print rrd_file + " : " + N+":"+t_e+":"+t_l+":"+ps
    #log("Echantillonnage dans " +  rrd_file + " : " + N+":"+t_e+":"+t_l+":"+ps)
@@ -345,8 +345,10 @@ if __name__ == "__main__":
    gpioInit(True)
 
    #  Lorsqu'on demarre le serveur, il faut que le systeme
-   # soit actif
-   gpio.output(pinActive, gpioPins[pinActive]['etat'])
+   # soit dans l'etat de base (attention, ca veut actif mais 
+   # eteint)
+   for pin in gpioPins:
+      gpio.output(pin, gpioPins[pin]['etat'])
 
    print "Temperature eau " + str(temperature_eau()) + "\n"
    app.run(host='0.0.0.0', port=8081, debug=True)
