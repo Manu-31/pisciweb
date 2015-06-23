@@ -6,6 +6,13 @@
 (voire de modifier) l'état de la piscine et de quelques scripts
 permettant de mettre en place une gestion de base.
 
+   Cela fonctionne sur un Raspberry Pi avec une debian. L'interfaçage
+avec le circuit électrique est réalisé au moyen d'optocoupleurs
+trouvés à moindre coût sur ebay.
+
+   Celui que j'utilise est activé en mettant sur "low" les broches du
+raspberry.
+
 2 - L'installation des fichiers
 
    2.1 - pisciweb 
