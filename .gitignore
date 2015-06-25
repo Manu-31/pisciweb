@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *~
 *.rrd
+FakeRPi
 
 # C extensions
 *.so

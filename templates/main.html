@@ -22,7 +22,7 @@
                 border-left: #cecece 8px solid;
                 border-bottom: #cecece 8px solid;
                 display: block;
-                width: 200px;
+                width: 176px;
                 margin: 0.0em;
                 padding: 12px;
                 background: #e0e0e0;
@@ -45,39 +45,15 @@
    </head>
    <body>
 
-<table border="0">
-  <tr>
-    <td  width="50%"><SPAN id="temperature">{{ tempEau }}°</SPAN></td>
-    <td>
-         {% if etatEclairage ==  gpioMarche %}
-            <a id="button" href="{{ url_for('eclairage_arret') }}">Lumière</a>
-         {% else %}
-            <a id="button" href="{{ url_for('eclairage_marche') }}">Eteindre</a>
-         {% endif %}
-         {% if etatPompe ==  gpioMarche %}
-            <a id="button" href="{{ url_for('pompe_arret') }}">Arrêter la pompe</a>
-         {% else %}
-            <a id="button" href="{{ url_for('pompe_marche') }}">Allumer la pompe</a>
-         {% endif %}
-         {% if etatControlepH ==  gpioMarche %}
-            <a id="button" href="{{ url_for('controleph_arret') }}">Arrêter le ctrl pH </a>
-         {% else %}
-            <a id="button" href="{{ url_for('controleph_marche') }}">Allumer le ctrl pH</a>
-         {% endif %}
- 
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2"><img src="/static/tempiscine.png"></td>
-  </tr>
-</table>
-      <br>
-        {% if activation ==  gpioMarche %}
-             <p id="mention"> Pisciweb {{ pisciWebVersion}} système sous contrôle</p>
-         {% else %}
-             <p id="mention"> Pisciweb {{ pisciWebVersion}} système désactivé </p>
-         {% endif %}
-         <a id="mention" href="{{ url_for('debogage') }}"> débogage</a>
+      {% include 'table-etat-courant.html' %}
+
+<br>
+  {% if activation ==  gpioMarche %}
+     <p id="mention"> Pisciweb {{ pisciWebVersion}} système sous contrôle</p>
+  {% else %}
+     <p id="mention"> Pisciweb {{ pisciWebVersion}} système désactivé </p>
+  {% endif %}
+     <a id="mention" href="{{ url_for('debogage') }}"> débogage</a>
+
 </body>
 </html>
-

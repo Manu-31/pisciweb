@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      {% include 'head.html' %}
+      <title>Version {{pisciWebVersion}}</title>
+   </head>
+   <body>
+      {% include 'menu.html' %}
+      {% block contenu %} {% endblock %}
+      {% include 'bottom-line.html' %}
+   </body>
+</html>

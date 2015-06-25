@@ -46,6 +46,10 @@ appelé à remplacer le script templog.sh
 commande). Avec l'introduction de pisciweb.py pour avoir une interface
 web, il est appelé à disparaitre.
 
+   2.5 - pisciweb.cfg
+
+   Le fichier de configuration de pisciweb.py
+
 3 - Le branchement
 
    L'idée de base est que le système traditionnel (manuel) continue

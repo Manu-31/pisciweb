@@ -1,0 +1,6 @@
+{% extends "pisciweb.html" %}
+{% block contenu %}
+   {% for message in messages %}
+   <p class='log'>{{ message }}</p>
+   {% endfor %}
+{% endblock %}

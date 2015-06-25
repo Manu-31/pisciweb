@@ -1,0 +1,35 @@
+<table border="0">
+  <tr>
+    <td  width="50%"><SPAN id="temperature">{{ tempEau }}°</SPAN></td>
+    <td>
+      <table border="0">
+        <tr>
+          {% if etatEclairage ==  gpioMarche %}
+             <a id="buttonL" href="{{ url_for('eclairage_arret') }}">Eteindre</a>
+          {% else %}
+             <a id="buttonL" href="{{ url_for('eclairage_marche') }}">Eclairer</a>
+          {% endif %}
+        </tr>
+        <tr>
+          <td>
+            {% if etatPompe ==  gpioMarche %}
+               <a id="button" href="{{ url_for('pompe_arret') }}">P. OFF</a>
+            {% else %}
+               <a id="button" href="{{ url_for('pompe_marche') }}">P. ON</a>
+            {% endif %}
+          </td>
+          <td>
+            {% if etatControlepH ==  gpioMarche %}
+               <a id="button" href="{{ url_for('controleph_arret') }}">pH OFF </a>
+            {%  else %}
+               <a id="button" href="{{ url_for('controleph_marche') }}">pH ON</a>
+            {% endif %}
+          </td>
+        </tr> 
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="/static/tempiscine.png"></td>
+  </tr>
+</table>
