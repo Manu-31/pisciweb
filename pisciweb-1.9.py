@@ -29,7 +29,8 @@ app = Flask(__name__)
 #--------------------------------------------------------
 # Generalites
 #--------------------------------------------------------
-pisciWebVersion  = "1.8"  # Utilisation de FakeRPi pour tests
+pisciWebVersion  = "1.9"
+#pisciWebVersion = "1.8"  # Utilisation de FakeRPi pour tests
                           # Utilisation de ConfigParser
                           # Utilisation de logging
 #pisciWebVersion = "1.7"  # Ajout de options -R -r -L -l
@@ -46,9 +47,6 @@ repertoire = "/home/pi/pisciweb"
 rrd_filename = "tempiscine.rrd"
 
 rrd_file = repertoire + "/" + rrd_filename
-
-sondeTemperatureEau = "28-0000037ae572"
-sondeTemperatureLocal = "28-0000037b14c5"
 
 #--------------------------------------------------------
 # Pour pouvoir logguer sur une page web
@@ -409,6 +407,8 @@ config.read(['/etc/pisciweb.cfg', os.path.expanduser('~/.pisciweb.cfg')])
 
 #  Le 1wire
 oneWireRootDir = config.get('1wire', 'rootDir')
+sondeTemperatureEau = config.get('1wire', 'sondeTemperatureEau')
+sondeTemperatureLocal = config.get('1wire', 'sondeTemperatureLocal')
 
 #  Le debogage
 logFileName = config.get('debug', 'logFile')
@@ -477,7 +477,6 @@ if __name__ == "__main__":
    parser.add_argument("-l", "--eclairage_stop", help="Extinction de l'eclairage",
                     action="store_true")
    args = parser.parse_args()
-
 
    # On traite les options
    if (args.filtration_start) :
