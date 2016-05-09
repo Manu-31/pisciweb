@@ -3,7 +3,7 @@
 #
 #   A Faire
 #     . option archiver pour se debarasser de templog.sh
-#     . configuration du répertoire de stockage des rrd
+#     . configuration du repertoire de stockage des rrd
 #
 #   Fait
 #     . comment visualiser sur le log les actions en ligne
