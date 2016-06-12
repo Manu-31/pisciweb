@@ -306,7 +306,7 @@ def action(changePin, action):
 #--------------------------------------------------------
 @appr.route("/temperature")
 def getTemp():
-   return Response(json.dumps(temperature_eau(),mimetype='application/json')
+   return Response(json.dumps(temperature_eau()),mimetype='application/json')
 
 #--------------------------------------------------------
 # La page principale
