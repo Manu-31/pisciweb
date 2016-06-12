@@ -29,7 +29,8 @@ app = Flask(__name__)
 #--------------------------------------------------------
 # Generalites
 #--------------------------------------------------------
-pisciWebVersion  = "1.9"
+pisciWebVersion  = "1.10" # ajout d'un /temperature
+#pisciWebVersion = "1.9"
 #pisciWebVersion = "1.8"  # Utilisation de FakeRPi pour tests
                           # Utilisation de ConfigParser
                           # Utilisation de logging
@@ -304,7 +305,7 @@ def action(changePin, action):
 #--------------------------------------------------------
 # Une page pour la temperature
 #--------------------------------------------------------
-@appr.route("/temperature")
+@app.route("/temperature")
 def getTemp():
    return Response(json.dumps(temperature_eau()),mimetype='application/json')
 
