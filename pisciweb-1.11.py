@@ -30,7 +30,9 @@ app = Flask(__name__)
 #--------------------------------------------------------
 # Generalites
 #--------------------------------------------------------
-pisciWebVersion  = "1.10" # ajout d'un /temperature
+pisciWebVersion  = "1.11" # ajout de pages pour acceder depuis
+                          # domoweb. WARNING : unsafe !
+#pisciWebVersion = "1.10" # ajout d'un /temperature
 #pisciWebVersion = "1.9"
 #pisciWebVersion = "1.8"  # Utilisation de FakeRPi pour tests
                           # Utilisation de ConfigParser
@@ -316,6 +318,34 @@ def getTemp():
 @app.route("/temperature_air")
 def getTempAir():
    return Response(json.dumps(temperature_local()),mimetype='application/json')
+
+#--------------------------------------------------------
+# Une page pour l'etat de la lumiere
+#--------------------------------------------------------
+@app.route("/light")
+def getLightStatus():
+   return Response(json.dumps(1-gpioPins[pinLumiere]['etat']),mimetype='application/json')
+
+#--------------------------------------------------------
+# Une page pour l'etat de la pompe
+#--------------------------------------------------------
+@app.route("/pump")
+def getPumpStatus():
+   return Response(json.dumps(1-gpioPins[pinPompe]['etat']),mimetype='application/json')
+
+#--------------------------------------------------------
+# Une page pour l'etat du pHmetre
+#--------------------------------------------------------
+@app.route("/ph")
+def getPhStatus():
+   return Response(json.dumps(1-gpioPins[pinControlepH]['etat']),mimetype='application/json')
+
+#--------------------------------------------------------
+# Une page pour l'etat du robot
+#--------------------------------------------------------
+@app.route("/robot")
+def getRobotStatus():
+   return Response(json.dumps(1-gpioPins[pinRobot,]['etat']),mimetype='application/json')
 
 #--------------------------------------------------------
 # La page principale
