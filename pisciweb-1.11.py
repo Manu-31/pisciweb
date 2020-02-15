@@ -345,7 +345,7 @@ def getPhStatus():
 #--------------------------------------------------------
 @app.route("/robot")
 def getRobotStatus():
-   return Response(json.dumps(1-gpioPins[pinRobot,]['etat']),mimetype='application/json')
+   return Response(json.dumps(1-gpioPins[pinRobot]['etat']),mimetype='application/json')
 
 #--------------------------------------------------------
 # La page principale
@@ -432,6 +432,16 @@ def eclairage_arret():
 @app.route("/eclairage_marche")
 def eclairage_marche():
    eclairage_start("web")
+   return redirect('/')
+
+@app.route("/robot_marche")
+def robot_marche():
+   robot_start("web")
+   return redirect('/')
+
+@app.route("/robot_arret")
+def robot_arret():
+   robot_stop("web")
    return redirect('/')
 
 #=============================================================

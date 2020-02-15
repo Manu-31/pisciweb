@@ -91,6 +91,7 @@ RRD_BASENAME=tempiscine
 RRD_HEARTBEAT=$(echo "scale=2; 2*$PERIODE_MESURE" | bc)
 
 RRD_FILE=${REPERTOIRE}/${RRD_BASENAME}.rrd
+#RRD_FILE=/home/pi/pisciweb/tempiscine-2018-06-27.rrd
 
 # Paramtres gpio
 GPIO=/usr/bin/gpio
@@ -150,6 +151,7 @@ echantilloner () {
 
 # Generation d'un graph
 tracer () {
+   echo rrdf = ${RRD_FILE}
   # log "Generation d'un graphe"
    rrdtool graph ${PNGFILE} --vertical-label "Temperature (deg C)" \
      --width 800 --height 200 \
@@ -174,21 +176,23 @@ tracer () {
      STACK:huitieme#c9e3ff \
      CDEF:lp=Pompe,0.5,LT,$TEMP_MAX,0.9,*,$TEMP_MIN,IF  \
      CDEF:ppline=Pompe,0.5,LT,0,55,IF \
-     LINE0:lp#202020 \
      AREA:ppline#10901040:"Filtration active":STACK \
      LINE1:Temp1#0000FF:"$NOM1" \
      LINE2:Temp2#FF0000:"$NOM2" \
-#     CDEF:froid=Temp1,14,LT,Temp1,0,IF \
-#    AREA:froid#0000FF40:"Trop froid !" \
 
-#     CDEF:lp=Pompe,0.5,LT,0,$TEMP_MAX,0.6,*,IF  \
-#     CDEF:ppline=Pompe,0.5,LT,0,10.0,IF \
-#     AREA:ppline#b2eb78:"Filtration active":STACK \
-# Pour un fond gris quand la pompe tourne
-#     CDEF:pmh=Pompe,0.5,LT,0,$TEMP_MAX,IF \
-#     CDEF:pml=Pompe,0.5,LT,0,$TEMP_MIN,IF \
-#     AREA:pml#E0E0E0 \
-#     AREA:pmh#E0E0E0:"Filtration active" \
+#     LINE0:lp#202020 \
+
+
+##     CDEF:froid=Temp1,14,LT,Temp1,0,IF \
+##    AREA:froid#0000FF40:"Trop froid !" \
+##     CDEF:lp=Pompe,0.5,LT,0,$TEMP_MAX,0.6,*,IF  \
+##     CDEF:ppline=Pompe,0.5,LT,0,10.0,IF \
+##     AREA:ppline#b2eb78:"Filtration active":STACK \
+### Pour un fond gris quand la pompe tourne
+##     CDEF:pmh=Pompe,0.5,LT,0,$TEMP_MAX,IF \
+##     CDEF:pml=Pompe,0.5,LT,0,$TEMP_MIN,IF \
+##     AREA:pml#E0E0E0 \
+##     AREA:pmh#E0E0E0:"Filtration active" \
 }
 
 # Sauvegarde de la base
