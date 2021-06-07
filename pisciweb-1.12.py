@@ -31,7 +31,7 @@ app = Flask(__name__)
 #--------------------------------------------------------
 # Generalites
 #--------------------------------------------------------
-pisciWebVersion  = "1.12" # Pas de plantage si une sonde ne répond pas
+pisciWebVersion  = "1.12" # Pas de plantage si une sonde ne repond pas
 #pisciWebVersion = "1.11" # ajout de pages pour acceder depuis
                           # domoweb. WARNING : unsafe !
 #pisciWebVersion = "1.10" # ajout d'un /temperature
